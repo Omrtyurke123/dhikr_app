@@ -5,7 +5,7 @@ import '../data/adhkar_data.dart';
 
 class AppLockScreen extends StatefulWidget {
   final String lockedPackage;
-  const AppLockScreen({super.key, required this.lockedPackage});
+  const AppLockScreen({super.key, this.lockedPackage = ''});
 
   @override
   State<AppLockScreen> createState() => _AppLockScreenState();
@@ -14,9 +14,6 @@ class AppLockScreen extends StatefulWidget {
 class _AppLockScreenState extends State<AppLockScreen> {
   int _count = 0;
   final int _target = 10;
-  late final _dhikr = AdhkarData.categories
-      .expand((c) => c.adhkar)
-      .firstWhere((d) => d.id == 'tasbeeh_1');
 
   void _increment() {
     HapticFeedback.lightImpact();
@@ -49,10 +46,10 @@ class _AppLockScreenState extends State<AppLockScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('ðŸ”’', style: TextStyle(fontSize: 60)),
+                      const Text('??', style: TextStyle(fontSize: 60)),
                       const SizedBox(height: 16),
                       const Text(
-                        'Ø§Ø°ÙƒØ± Ø§Ù„Ù„Ù‡ Ø£ÙˆÙ„Ø§Ù‹',
+                        'ÇÐßÑ Çááå ÃæáÇð',
                         style: TextStyle(
                           color: AppTheme.textPrimary,
                           fontSize: 28,
@@ -60,9 +57,9 @@ class _AppLockScreenState extends State<AppLockScreen> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text(
-                        'Ø³Ø¨Ù‘Ø­ $_target Ù…Ø±Ø© Ù„Ù„Ù…ØªØ§Ø¨Ø¹Ø©',
-                        style: const TextStyle(
+                      const Text(
+                        'ÓÈøÍ 10 ãÑÇÊ ááãÊÇÈÚÉ',
+                        style: TextStyle(
                           color: AppTheme.textSecondary,
                           fontSize: 16,
                         ),
@@ -96,9 +93,8 @@ class _AppLockScreenState extends State<AppLockScreen> {
                                 ),
                               ),
                               const Text(
-                                'Ø³Ø¨Ø­Ø§Ù† Ø§Ù„Ù„Ù‡',
-                                style: TextStyle(
-                                    color: Colors.white70, fontSize: 13),
+                                'ÓÈÍÇä Çááå',
+                                style: TextStyle(color: Colors.white70, fontSize: 13),
                               ),
                             ],
                           ),
@@ -108,7 +104,7 @@ class _AppLockScreenState extends State<AppLockScreen> {
                       TextButton(
                         onPressed: () => SystemNavigator.pop(),
                         child: const Text(
-                          'Ø±Ø¬ÙˆØ¹',
+                          'ÑÌæÚ',
                           style: TextStyle(color: AppTheme.textSecondary),
                         ),
                       ),
