@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class AppTheme {
   static const Color bgColor = Color(0xFF1A1F1A);
   static const Color accentGreen = Color(0xFF6B8F3E);
@@ -12,6 +13,7 @@ class AppTheme {
         primaryColor: accentGreen,
         colorScheme: const ColorScheme.dark(
           primary: accentGreen,
+          background: bgColor,
           surface: cardColor,
         ),
         appBarTheme: const AppBarTheme(
@@ -19,24 +21,25 @@ class AppTheme {
           elevation: 0,
           centerTitle: true,
           titleTextStyle: TextStyle(
+            fontFamily: 'Amiri',
             fontSize: 22,
             fontWeight: FontWeight.bold,
             color: textPrimary,
           ),
         ),
-        cardTheme: const CardThemeData(
+        cardTheme: const CardTheme(
           color: cardColor,
           elevation: 2,
           margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         ),
-        tabBarTheme: const TabBarThemeData(
+        tabBarTheme: const TabBarTheme(
           labelColor: accentGreen,
           unselectedLabelColor: textSecondary,
           indicatorColor: accentGreen,
         ),
         textTheme: const TextTheme(
-          bodyLarge: TextStyle(color: textPrimary),
-          bodyMedium: TextStyle(color: textSecondary),
+          bodyLarge: TextStyle(color: textPrimary, fontFamily: 'Amiri'),
+          bodyMedium: TextStyle(color: textSecondary, fontFamily: 'Amiri'),
         ),
         useMaterial3: false,
       );

@@ -3,6 +3,7 @@ import '../theme/app_theme.dart';
 import 'dhikr_list_screen.dart';
 import 'tasbeeh_screen.dart';
 import 'challenges_screen.dart';
+import 'app_lock_settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,31 +28,23 @@ class _HomeScreenState extends State<HomeScreen>
     super.dispose();
   }
 
-  String get _greeting {
-    final hour = DateTime.now().hour;
-    if (hour >= 5 && hour < 12) return 'صباح الخير 🌅';
-    if (hour >= 12 && hour < 17) return 'مساء الخير ☀️';
-    if (hour >= 17 && hour < 20) return 'مساء النور 🌇';
-    return 'مساء الخير 🌙';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Column(
-          children: [
-            const Text('تطبيق الذكر'),
-            Text(
-              _greeting,
-              style: const TextStyle(
-                fontSize: 13,
-                color: AppTheme.accentGreen,
-                fontWeight: FontWeight.normal,
+        title: const Text('تطبيق الذكر'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.lock_outline, color: AppTheme.accentGreen),
+            tooltip: 'قفل التطبيقات',
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const AppLockSettingsScreen(),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
