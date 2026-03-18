@@ -1,500 +1,512 @@
 import '../models/dhikr_model.dart';
 
 class AdhkarData {
-  static const List<DhikrCategory> categories = [
-    // ─── MORNING ────────────────────────────────────────────────────────────
-    DhikrCategory(
-      id: 'morning',
-      title: 'أذكار الصباح',
-      subtitle: 'Morning Adhkar',
-      iconAsset: 'morning',
-      type: CategoryType.morning,
-      items: [
-        DhikrItem(
-          id: 'm1',
-          arabic: 'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
-          translation: 'We have reached the morning and at this very time all sovereignty belongs to Allah. Praise be to Allah. None has the right to be worshipped but Allah alone, Who has no partner.',
-          defaultCount: 1,
-          virtue: 'يُقرأ مرة واحدة في الصباح',
+  static List<DhikrCategory> get categories => [
+        DhikrCategory(
+          id: 'morning',
+          name: 'أذكار الصباح',
+          icon: '🌅',
+          type: CategoryType.morning,
+          adhkar: _morningAdhkar,
         ),
-        DhikrItem(
-          id: 'm2',
-          arabic: 'اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ',
-          translation: 'O Allah, by You we enter the morning, by You we enter the evening, by You we live and by You we die, and to You is the resurrection.',
-          defaultCount: 1,
-          virtue: 'دعاء الصباح',
+        DhikrCategory(
+          id: 'evening',
+          name: 'أذكار المساء',
+          icon: '🌇',
+          type: CategoryType.evening,
+          adhkar: _eveningAdhkar,
         ),
-        DhikrItem(
-          id: 'm3',
-          arabic: 'اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ',
-          translation: 'O Allah, You are my Lord. None has the right to be worshipped except You. You created me and I am Your servant and I abide to Your covenant and promise as best I can.',
-          defaultCount: 1,
-          virtue: 'سيد الاستغفار — من قاله موقناً به فمات من يومه دخل الجنة',
+        DhikrCategory(
+          id: 'prayer',
+          name: 'أذكار بعد الصلاة',
+          icon: '🕌',
+          type: CategoryType.prayer,
+          adhkar: _prayerAdhkar,
         ),
-        DhikrItem(
-          id: 'm4',
-          arabic: 'رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا',
-          translation: 'I am pleased with Allah as my Lord, Islam as my religion and Muhammad (ﷺ) as my Prophet.',
-          defaultCount: 3,
-          virtue: 'من قالها ثلاثاً كان حقاً على الله أن يُرضيه يوم القيامة',
+        DhikrCategory(
+          id: 'sleep',
+          name: 'أذكار النوم',
+          icon: '🌙',
+          type: CategoryType.sleep,
+          adhkar: _sleepAdhkar,
         ),
-        DhikrItem(
-          id: 'm5',
-          arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
-          translation: 'Glory be to Allah and praise be to Him.',
-          defaultCount: 100,
-          virtue: 'من قالها مئة مرة حُطَّت خطاياه وإن كانت مثل زبد البحر',
+        DhikrCategory(
+          id: 'istighfar',
+          name: 'الاستغفار',
+          icon: '🤲',
+          type: CategoryType.istighfar,
+          adhkar: _istighfarAdhkar,
         ),
-        DhikrItem(
-          id: 'm6',
-          arabic: 'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
-          translation: 'None has the right to be worshipped but Allah alone, Who has no partner. His is the dominion and His is the praise, and He is able to do all things.',
-          defaultCount: 10,
-          virtue: 'من قالها عشر مرات كانت كمن أعتق أربعة أنفس من ولد إسماعيل',
+        DhikrCategory(
+          id: 'tasbeeh',
+          name: 'التسبيح',
+          icon: '📿',
+          type: CategoryType.tasbeeh,
+          adhkar: _tasbeehAdhkar,
         ),
-        DhikrItem(
-          id: 'm7',
-          arabic: 'يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ',
-          translation: 'O Ever Living, O Self-Subsisting, by Your mercy I seek help. Rectify all my affairs and do not leave me to myself even for the blink of an eye.',
-          defaultCount: 1,
-          virtue: 'دعاء الصباح والمساء',
+        DhikrCategory(
+          id: 'salawat',
+          name: 'الصلاة على النبي',
+          icon: '☪️',
+          type: CategoryType.salawat,
+          adhkar: _salawatAdhkar,
         ),
-        DhikrItem(
-          id: 'm8',
-          arabic: 'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ',
-          translation: 'I seek refuge in the perfect words of Allah from the evil of what He has created.',
-          defaultCount: 3,
-          virtue: 'لَمْ يَضُرَّهُ شيء حتى يَرتحل من منزله ذلك',
+        DhikrCategory(
+          id: 'misc',
+          name: 'أذكار متنوعة',
+          icon: '✨',
+          type: CategoryType.misc,
+          adhkar: _miscAdhkar,
         ),
-        DhikrItem(
-          id: 'm9',
-          arabic: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ',
-          translation: 'In the name of Allah with Whose name nothing can harm on earth or in heaven, and He is the All-Hearing, the All-Knowing.',
-          defaultCount: 3,
-          virtue: 'لن يضره شيء',
-        ),
-      ],
-    ),
+      ];
 
-    // ─── EVENING ────────────────────────────────────────────────────────────
-    DhikrCategory(
-      id: 'evening',
-      title: 'أذكار المساء',
-      subtitle: 'Evening Adhkar',
-      iconAsset: 'evening',
-      type: CategoryType.evening,
-      items: [
-        DhikrItem(
-          id: 'e1',
-          arabic: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
-          translation: 'We have reached the evening and at this very time all sovereignty belongs to Allah. Praise be to Allah. None has the right to be worshipped but Allah alone.',
-          defaultCount: 1,
-          virtue: 'يُقرأ مرة واحدة في المساء',
-        ),
-        DhikrItem(
-          id: 'e2',
-          arabic: 'اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ',
-          translation: 'O Allah, by You we enter the evening, by You we enter the morning, by You we live and by You we die, and to You is the final return.',
-          defaultCount: 1,
-          virtue: 'دعاء المساء',
-        ),
-        DhikrItem(
-          id: 'e3',
-          arabic: 'اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَهَ إِلَّا أَنْتَ',
-          translation: 'O Allah, grant me health in my body. O Allah, grant me health in my hearing. O Allah, grant me health in my sight. None has the right to be worshipped but You.',
-          defaultCount: 3,
-          virtue: 'يُقرأ ثلاث مرات صباحاً ومساءً',
-        ),
-        DhikrItem(
-          id: 'e4',
-          arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ',
-          translation: 'O Allah, I ask You for pardon and well-being in this life and the next.',
-          defaultCount: 3,
-          virtue: 'يُقرأ ثلاث مرات صباحاً ومساءً',
-        ),
-        DhikrItem(
-          id: 'e5',
-          arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
-          translation: 'Glory be to Allah and praise be to Him.',
-          defaultCount: 100,
-          virtue: 'من قالها مئة مرة حُطَّت خطاياه',
-        ),
-        DhikrItem(
-          id: 'e6',
-          arabic: 'اللَّهُمَّ إِنِّي أَمْسَيْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّداً عَبْدُكَ وَرَسُولُكَ',
-          translation: 'O Allah, I have reached the evening and call on You, the bearers of Your Throne, Your angels, and all of Your creation to witness that You are Allah, none has the right to be worshipped but You alone.',
-          defaultCount: 4,
-          virtue: 'أعتقه الله من النار ربع النار',
-        ),
-      ],
+  // ============ أذكار الصباح ============
+  static final List<DhikrModel> _morningAdhkar = [
+    const DhikrModel(
+      id: 'morning_1',
+      arabic: 'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
+      transliteration: 'Asbahna wa asbahal mulku lillah...',
+      meaning: 'أصبحنا وأصبح الملك لله',
+      count: 1,
+      source: 'أبو داود',
+      category: CategoryType.morning,
     ),
-
-    // ─── NIGHT PRAYER ───────────────────────────────────────────────────────
-    DhikrCategory(
-      id: 'night',
-      title: 'أذكار قيام الليل',
-      subtitle: 'Night Prayer Adhkar',
-      iconAsset: 'night',
-      type: CategoryType.night,
-      items: [
-        DhikrItem(
-          id: 'n1',
-          arabic: 'اللَّهُمَّ لَكَ الْحَمْدُ أَنْتَ نُورُ السَّمَاوَاتِ وَالْأَرْضِ وَمَنْ فِيهِنَّ، وَلَكَ الْحَمْدُ أَنْتَ قَيِّمُ السَّمَاوَاتِ وَالْأَرْضِ وَمَنْ فِيهِنَّ',
-          translation: 'O Allah, praise be to You. You are the Light of the heavens and the earth and whoever is in them. And praise be to You; You are the Sustainer of the heavens and the earth.',
-          defaultCount: 1,
-          virtue: 'دعاء قيام الليل',
-        ),
-        DhikrItem(
-          id: 'n2',
-          arabic: 'سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، تَبَارَكَ اسْمُكَ، وَتَعَالَى جَدُّكَ، وَلَا إِلَهَ غَيْرُكَ',
-          translation: 'Glory be to You, O Allah, and praise. Blessed is Your Name, exalted is Your Majesty, there is no god but You.',
-          defaultCount: 1,
-          virtue: 'دعاء الاستفتاح في الصلاة',
-        ),
-        DhikrItem(
-          id: 'n3',
-          arabic: 'اللَّهُمَّ رَبَّ جِبْرَائِيلَ وَمِيكَائِيلَ وَإِسْرَافِيلَ، فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ، عَالِمَ الْغَيْبِ وَالشَّهَادَةِ، أَنْتَ تَحْكُمُ بَيْنَ عِبَادِكَ فِيمَا كَانُوا فِيهِ يَخْتَلِفُونَ',
-          translation: 'O Allah, Lord of Jibreel, Mikael and Israfeel, Creator of the heavens and the earth, Knower of the seen and unseen...',
-          defaultCount: 1,
-          virtue: 'دعاء النبي ﷺ عند قيام الليل',
-        ),
-      ],
+    const DhikrModel(
+      id: 'morning_2',
+      arabic: 'اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ',
+      transliteration: 'Allahumma bika asbahna...',
+      meaning: 'اللهم بك أصبحنا وبك أمسينا',
+      count: 1,
+      source: 'الترمذي',
+      category: CategoryType.morning,
     ),
-
-    // ─── AFTER PRAYER ───────────────────────────────────────────────────────
-    DhikrCategory(
-      id: 'prayer',
-      title: 'أذكار الصلاة',
-      subtitle: 'After Prayer Adhkar',
-      iconAsset: 'prayer',
-      type: CategoryType.prayer,
-      items: [
-        DhikrItem(
-          id: 'p1',
-          arabic: 'سُبْحَانَ اللَّهِ',
-          translation: 'Glory be to Allah.',
-          defaultCount: 33,
-          virtue: 'يُقال ثلاثاً وثلاثين مرة بعد كل صلاة',
-        ),
-        DhikrItem(
-          id: 'p2',
-          arabic: 'الْحَمْدُ لِلَّهِ',
-          translation: 'Praise be to Allah.',
-          defaultCount: 33,
-          virtue: 'يُقال ثلاثاً وثلاثين مرة بعد كل صلاة',
-        ),
-        DhikrItem(
-          id: 'p3',
-          arabic: 'اللَّهُ أَكْبَرُ',
-          translation: 'Allah is the Greatest.',
-          defaultCount: 33,
-          virtue: 'يُقال ثلاثاً وثلاثين مرة بعد كل صلاة',
-        ),
-        DhikrItem(
-          id: 'p4',
-          arabic: 'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
-          translation: 'None has the right to be worshipped but Allah alone, Who has no partner. His is the dominion and His is the praise, and He is able to do all things.',
-          defaultCount: 1,
-          virtue: 'يُكمل المئة — غُفرت له خطاياه وإن كانت مثل زبد البحر',
-        ),
-        DhikrItem(
-          id: 'p5',
-          arabic: 'اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبَادَتِكَ',
-          translation: 'O Allah, help me remember You, to be grateful to You, and to worship You in the best manner.',
-          defaultCount: 1,
-          virtue: 'يُقال دُبر كل صلاة',
-        ),
-        DhikrItem(
-          id: 'p6',
-          arabic: 'آيَةُ الْكُرْسِيِّ:\nاللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ، لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ، لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ',
-          translation: 'Ayat Al-Kursi: Allah — there is no deity except Him, the Ever-Living, the Sustainer of existence. Neither drowsiness overtakes Him nor sleep...',
-          defaultCount: 1,
-          virtue: 'من قرأها دُبر كل صلاة لم يمنعه من دخول الجنة إلا الموت',
-        ),
-      ],
+    const DhikrModel(
+      id: 'morning_3',
+      arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
+      transliteration: 'Subhanallahi wa bihamdih',
+      meaning: 'سبحان الله وبحمده',
+      count: 100,
+      source: 'مسلم',
+      category: CategoryType.morning,
     ),
-
-    // ─── SLEEP ──────────────────────────────────────────────────────────────
-    DhikrCategory(
-      id: 'sleep',
-      title: 'أذكار النوم',
-      subtitle: 'Sleep Adhkar',
-      iconAsset: 'sleep',
-      type: CategoryType.sleep,
-      items: [
-        DhikrItem(
-          id: 's1',
-          arabic: 'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا',
-          translation: 'In Your name, O Allah, I die and I live.',
-          defaultCount: 1,
-          virtue: 'يُقال عند النوم',
-        ),
-        DhikrItem(
-          id: 's2',
-          arabic: 'اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ',
-          translation: 'O Allah, protect me from Your punishment on the day You resurrect Your servants.',
-          defaultCount: 3,
-          virtue: 'يُقال ثلاث مرات قبل النوم',
-        ),
-        DhikrItem(
-          id: 's3',
-          arabic: 'سُبْحَانَ اللَّهِ',
-          translation: 'Glory be to Allah.',
-          defaultCount: 33,
-          virtue: 'أَلَا أَدُلُّكُمَا عَلَى مَا هُوَ خَيْرٌ لَكُمَا مِنْ خَادِمٍ',
-        ),
-        DhikrItem(
-          id: 's4',
-          arabic: 'الْحَمْدُ لِلَّهِ',
-          translation: 'Praise be to Allah.',
-          defaultCount: 33,
-          virtue: 'يُقال ثلاثاً وثلاثين مرة قبل النوم',
-        ),
-        DhikrItem(
-          id: 's5',
-          arabic: 'اللَّهُ أَكْبَرُ',
-          translation: 'Allah is the Greatest.',
-          defaultCount: 34,
-          virtue: 'يُقال أربعاً وثلاثين مرة قبل النوم',
-        ),
-        DhikrItem(
-          id: 's6',
-          arabic: 'اللَّهُمَّ أَسْلَمْتُ نَفْسِي إِلَيْكَ، وَفَوَّضْتُ أَمْرِي إِلَيْكَ، وَوَجَّهْتُ وَجْهِي إِلَيْكَ، وَأَلْجَأْتُ ظَهْرِي إِلَيْكَ، رَغْبَةً وَرَهْبَةً إِلَيْكَ، لَا مَلْجَأَ وَلَا مَنْجَا مِنْكَ إِلَّا إِلَيْكَ',
-          translation: 'O Allah, I submit my soul to You, entrust my affairs to You, turn my face to You, and depend on You in hope and fear of You.',
-          defaultCount: 1,
-          virtue: 'من قاله ومات من ليلته مات على الفطرة',
-        ),
-      ],
+    const DhikrModel(
+      id: 'morning_4',
+      arabic: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',
+      transliteration: 'Audhu billahi minash shaytanir rajeem',
+      meaning: 'أعوذ بالله من الشيطان الرجيم',
+      count: 1,
+      category: CategoryType.morning,
     ),
-
-    // ─── MISC ────────────────────────────────────────────────────────────────
-    DhikrCategory(
-      id: 'misc',
-      title: 'أدعية متنوعة',
-      subtitle: 'Various Supplications',
-      iconAsset: 'misc',
-      type: CategoryType.misc,
-      items: [
-        DhikrItem(
-          id: 'misc1',
-          arabic: 'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ',
-          translation: 'Allah is sufficient for us, and He is the best disposer of affairs.',
-          defaultCount: 7,
-          virtue: 'يُقال سبع مرات صباحاً ومساءً',
-        ),
-        DhikrItem(
-          id: 'misc2',
-          arabic: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
-          translation: 'There is no power and no strength except with Allah.',
-          defaultCount: 100,
-          virtue: 'كنز من كنوز الجنة',
-        ),
-        DhikrItem(
-          id: 'misc3',
-          arabic: 'لَا إِلَهَ إِلَّا اللَّهُ',
-          translation: 'None has the right to be worshipped but Allah.',
-          defaultCount: 100,
-          virtue: 'أفضل الذكر',
-        ),
-      ],
-    ),
-
-    // ─── ISTIGHFAR ──────────────────────────────────────────────────────────
-    DhikrCategory(
-      id: 'istighfar',
-      title: 'الاستغفار',
-      subtitle: 'Seeking Forgiveness',
-      iconAsset: 'istighfar',
-      type: CategoryType.istighfar,
-      items: [
-        DhikrItem(
-          id: 'ig1',
-          arabic: 'أَسْتَغْفِرُ اللَّهَ',
-          translation: 'I seek forgiveness from Allah.',
-          defaultCount: 100,
-          virtue: 'كان النبي ﷺ يستغفر الله في اليوم أكثر من سبعين مرة',
-        ),
-        DhikrItem(
-          id: 'ig2',
-          arabic: 'أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ',
-          translation: 'I seek forgiveness from Allah, the Most Great.',
-          defaultCount: 100,
-          virtue: 'استغفار عظيم',
-        ),
-        DhikrItem(
-          id: 'ig3',
-          arabic: 'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ',
-          translation: 'I seek the forgiveness of Allah and repent to Him.',
-          defaultCount: 100,
-          virtue: 'كان النبي ﷺ يقولها مئة مرة في اليوم',
-        ),
-        DhikrItem(
-          id: 'ig4',
-          arabic: 'أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ',
-          translation: 'I seek forgiveness from Allah, besides Whom none has the right to be worshipped, the Ever-Living, the Sustainer, and I repent to Him.',
-          defaultCount: 3,
-          virtue: 'غُفر له وإن كان فَرَّ من الزحف',
-        ),
-        DhikrItem(
-          id: 'ig5',
-          arabic: 'رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ',
-          translation: 'My Lord, forgive me and accept my repentance. Indeed You are the Ever-Accepting of repentance, the Most Merciful.',
-          defaultCount: 100,
-          virtue: 'كان النبي ﷺ يقولها مئة مرة في مجلسه',
-        ),
-        DhikrItem(
-          id: 'ig6',
-          arabic: 'سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ',
-          translation: 'Glory be to You, O Allah, and praise. I seek Your forgiveness and repent to You.',
-          defaultCount: 10,
-          virtue: 'كفارة المجلس',
-        ),
-        DhikrItem(
-          id: 'ig7',
-          arabic: 'اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ',
-          translation: 'O Allah, You are my Lord. None has the right to be worshipped except You. You created me and I am Your servant...',
-          defaultCount: 1,
-          virtue: 'سيد الاستغفار — من قاله موقناً به فمات من يومه دخل الجنة',
-        ),
-      ],
-    ),
-
-    // ─── TASBEEH ────────────────────────────────────────────────────────────
-    DhikrCategory(
-      id: 'tasbeeh',
-      title: 'التسبيح',
-      subtitle: 'Glorification of Allah',
-      iconAsset: 'tasbeeh',
-      type: CategoryType.tasbeeh,
-      items: [
-        DhikrItem(
-          id: 'ts1',
-          arabic: 'سُبْحَانَ اللَّهِ',
-          translation: 'Glory be to Allah.',
-          defaultCount: 33,
-          virtue: 'يُقال ثلاثاً وثلاثين مرة بعد الصلاة',
-        ),
-        DhikrItem(
-          id: 'ts2',
-          arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
-          translation: 'Glory be to Allah and praise be to Him.',
-          defaultCount: 100,
-          virtue: 'من قالها مئة مرة غُفرت له خطاياه وإن كانت مثل زبد البحر',
-        ),
-        DhikrItem(
-          id: 'ts3',
-          arabic: 'سُبْحَانَ اللَّهِ الْعَظِيمِ',
-          translation: 'Glory be to Allah, the Most Great.',
-          defaultCount: 100,
-          virtue: 'أحب الكلام إلى الله',
-        ),
-        DhikrItem(
-          id: 'ts4',
-          arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ',
-          translation: 'Glory be to Allah and praise be to Him; glory be to Allah, the Most Great.',
-          defaultCount: 100,
-          virtue: 'كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن',
-        ),
-        DhikrItem(
-          id: 'ts5',
-          arabic: 'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ',
-          translation: 'Glory be to Allah, praise be to Allah, none has the right to be worshipped but Allah, and Allah is the Greatest.',
-          defaultCount: 100,
-          virtue: 'أحب إليّ مما طلعت عليه الشمس',
-        ),
-        DhikrItem(
-          id: 'ts6',
-          arabic: 'سُبْحَانَ اللَّهِ عَدَدَ خَلْقِهِ، سُبْحَانَ اللَّهِ رِضَا نَفْسِهِ، سُبْحَانَ اللَّهِ زِنَةَ عَرْشِهِ، سُبْحَانَ اللَّهِ مِدَادَ كَلِمَاتِهِ',
-          translation: 'Glory be to Allah as much as the number of His creation, glory be to Allah as much as His pleasure...',
-          defaultCount: 3,
-          virtue: 'يَعدل تسبيح اليوم كله',
-        ),
-        DhikrItem(
-          id: 'ts7',
-          arabic: 'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
-          translation: 'None has the right to be worshipped but Allah alone, Who has no partner. His is the dominion and His is the praise, and He is able to do all things.',
-          defaultCount: 100,
-          virtue: 'من قالها مئة مرة كانت له عِدل عشر رقاب',
-        ),
-      ],
-    ),
-
-    // ─── SALAWAT ────────────────────────────────────────────────────────────
-    DhikrCategory(
-      id: 'salawat',
-      title: 'الصلاة على النبي ﷺ',
-      subtitle: 'Sending Prayers upon the Prophet',
-      iconAsset: 'salawat',
-      type: CategoryType.salawat,
-      items: [
-        DhikrItem(
-          id: 'sl1',
-          arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ',
-          translation: 'O Allah, send prayers upon Muhammad.',
-          defaultCount: 100,
-          virtue: 'من صلى عليّ مرة صلى الله عليه عشراً',
-        ),
-        DhikrItem(
-          id: 'sl2',
-          arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ',
-          translation: 'O Allah, send prayers upon Muhammad and upon the family of Muhammad.',
-          defaultCount: 100,
-          virtue: 'من صلى عليّ مرة صلى الله عليه عشراً',
-        ),
-        DhikrItem(
-          id: 'sl3',
-          arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ',
-          translation: 'O Allah, send prayers upon Muhammad and upon the family of Muhammad, as You sent prayers upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious.',
-          defaultCount: 10,
-          virtue: 'الصلاة الإبراهيمية الكاملة',
-        ),
-        DhikrItem(
-          id: 'sl4',
-          arabic: 'اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ',
-          translation: 'O Allah, send prayers, peace, and blessings upon our Prophet Muhammad.',
-          defaultCount: 100,
-          virtue: 'الصلاة الشاملة',
-        ),
-        DhikrItem(
-          id: 'sl5',
-          arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، وَبَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ وَبَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ',
-          translation: 'O Allah, send prayers upon Muhammad and upon the family of Muhammad, and bestow blessings upon Muhammad and upon the family of Muhammad, as You sent prayers and blessings upon Ibrahim and the family of Ibrahim.',
-          defaultCount: 10,
-          virtue: 'الصلاة الإبراهيمية الكاملة مع البركة',
-        ),
-        DhikrItem(
-          id: 'sl6',
-          arabic: 'صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ',
-          translation: 'May Allah send prayers and peace upon him.',
-          defaultCount: 1000,
-          virtue: 'من صلى عليّ في يوم ألف مرة لم يمت حتى يُبشَّر بالجنة',
-        ),
-        DhikrItem(
-          id: 'sl7',
-          arabic: 'اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ وَالصَّلَاةِ الْقَائِمَةِ، آتِ مُحَمَّداً الْوَسِيلَةَ وَالْفَضِيلَةَ، وَابْعَثْهُ مَقَاماً مَحْمُوداً الَّذِي وَعَدْتَهُ',
-          translation: 'O Allah, Lord of this perfect call and the prayer to be offered, grant Muhammad the privilege and also the eminence, and resurrect him to the praised position that You have promised him.',
-          defaultCount: 1,
-          virtue: 'حلت له شفاعتي يوم القيامة',
-        ),
-      ],
+    const DhikrModel(
+      id: 'morning_5',
+      arabic: 'اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ',
+      transliteration: 'Allahumma anta rabbi la ilaha illa anta...',
+      meaning: 'سيد الاستغفار',
+      count: 1,
+      source: 'البخاري',
+      category: CategoryType.morning,
     ),
   ];
 
-  static DhikrCategory? getCategoryById(String id) {
-    try {
-      return categories.firstWhere((c) => c.id == id);
-    } catch (_) {
-      return null;
-    }
-  }
+  // ============ أذكار المساء ============
+  static final List<DhikrModel> _eveningAdhkar = [
+    const DhikrModel(
+      id: 'evening_1',
+      arabic: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ',
+      transliteration: 'Amsayna wa amsal mulku lillah...',
+      meaning: 'أمسينا وأمسى الملك لله',
+      count: 1,
+      source: 'أبو داود',
+      category: CategoryType.evening,
+    ),
+    const DhikrModel(
+      id: 'evening_2',
+      arabic: 'اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ',
+      transliteration: 'Allahumma bika amsayna...',
+      meaning: 'اللهم بك أمسينا',
+      count: 1,
+      source: 'الترمذي',
+      category: CategoryType.evening,
+    ),
+    const DhikrModel(
+      id: 'evening_3',
+      arabic: 'حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ',
+      transliteration: 'Hasbiyallahu la ilaha illa huwa...',
+      meaning: 'حسبي الله لا إله إلا هو',
+      count: 7,
+      source: 'أبو داود',
+      category: CategoryType.evening,
+    ),
+    const DhikrModel(
+      id: 'evening_4',
+      arabic: 'اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَهَ إِلَّا أَنْتَ',
+      transliteration: 'Allahumma afini fi badani...',
+      meaning: 'اللهم عافني في بدني',
+      count: 3,
+      source: 'أبو داود',
+      category: CategoryType.evening,
+    ),
+    const DhikrModel(
+      id: 'evening_5',
+      arabic: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ',
+      transliteration: 'Bismillahil ladhi la yadurru...',
+      meaning: 'بسم الله الذي لا يضر مع اسمه شيء',
+      count: 3,
+      source: 'الترمذي',
+      category: CategoryType.evening,
+    ),
+  ];
 
-  static List<DhikrItem> getAllItems() {
-    return categories.expand((c) => c.items).toList();
-  }
+  // ============ أذكار بعد الصلاة ============
+  static final List<DhikrModel> _prayerAdhkar = [
+    const DhikrModel(
+      id: 'prayer_1',
+      arabic: 'أَسْتَغْفِرُ اللَّهَ',
+      transliteration: 'Astaghfirullah',
+      meaning: 'أستغفر الله',
+      count: 3,
+      source: 'مسلم',
+      category: CategoryType.prayer,
+    ),
+    const DhikrModel(
+      id: 'prayer_2',
+      arabic: 'اللَّهُمَّ أَنْتَ السَّلَامُ، وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ',
+      transliteration: 'Allahumma antas salam wa minkas salam...',
+      meaning: 'اللهم أنت السلام',
+      count: 1,
+      source: 'مسلم',
+      category: CategoryType.prayer,
+    ),
+    const DhikrModel(
+      id: 'prayer_3',
+      arabic: 'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
+      transliteration: 'La ilaha illallahu wahdahu la sharika lah...',
+      meaning: 'لا إله إلا الله وحده',
+      count: 1,
+      source: 'مسلم',
+      category: CategoryType.prayer,
+    ),
+    const DhikrModel(
+      id: 'prayer_4',
+      arabic: 'سُبْحَانَ اللَّهِ',
+      transliteration: 'Subhanallah',
+      meaning: 'سبحان الله',
+      count: 33,
+      source: 'مسلم',
+      category: CategoryType.prayer,
+    ),
+    const DhikrModel(
+      id: 'prayer_5',
+      arabic: 'الْحَمْدُ لِلَّهِ',
+      transliteration: 'Alhamdulillah',
+      meaning: 'الحمد لله',
+      count: 33,
+      source: 'مسلم',
+      category: CategoryType.prayer,
+    ),
+    const DhikrModel(
+      id: 'prayer_6',
+      arabic: 'اللَّهُ أَكْبَرُ',
+      transliteration: 'Allahu Akbar',
+      meaning: 'الله أكبر',
+      count: 33,
+      source: 'مسلم',
+      category: CategoryType.prayer,
+    ),
+    const DhikrModel(
+      id: 'prayer_7',
+      arabic: 'آيَةُ الْكُرْسِيِّ: اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ...',
+      transliteration: 'Ayatul Kursi',
+      meaning: 'آية الكرسي',
+      count: 1,
+      source: 'النسائي',
+      category: CategoryType.prayer,
+    ),
+  ];
 
-  /// Returns all items for categories that auto-select all when category is picked
-  static List<DhikrItem> getAutoSelectedItems(String categoryId) {
-    final cat = getCategoryById(categoryId);
-    return cat?.items ?? [];
-  }
+  // ============ أذكار النوم ============
+  static final List<DhikrModel> _sleepAdhkar = [
+    const DhikrModel(
+      id: 'sleep_1',
+      arabic: 'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا',
+      transliteration: 'Bismika Allahumma amutu wa ahya',
+      meaning: 'باسمك اللهم أموت وأحيا',
+      count: 1,
+      source: 'البخاري',
+      category: CategoryType.sleep,
+    ),
+    const DhikrModel(
+      id: 'sleep_2',
+      arabic: 'اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ',
+      transliteration: 'Allahumma qini adhabaka yawma tabathu ibadak',
+      meaning: 'اللهم قني عذابك يوم تبعث عبادك',
+      count: 3,
+      source: 'أبو داود',
+      category: CategoryType.sleep,
+    ),
+    const DhikrModel(
+      id: 'sleep_3',
+      arabic: 'سُبْحَانَ اللَّهِ',
+      transliteration: 'Subhanallah',
+      meaning: 'سبحان الله',
+      count: 33,
+      source: 'البخاري',
+      category: CategoryType.sleep,
+    ),
+    const DhikrModel(
+      id: 'sleep_4',
+      arabic: 'الْحَمْدُ لِلَّهِ',
+      transliteration: 'Alhamdulillah',
+      meaning: 'الحمد لله',
+      count: 33,
+      source: 'البخاري',
+      category: CategoryType.sleep,
+    ),
+    const DhikrModel(
+      id: 'sleep_5',
+      arabic: 'اللَّهُ أَكْبَرُ',
+      transliteration: 'Allahu Akbar',
+      meaning: 'الله أكبر',
+      count: 34,
+      source: 'البخاري',
+      category: CategoryType.sleep,
+    ),
+  ];
+
+  // ============ الاستغفار ============
+  static final List<DhikrModel> _istighfarAdhkar = [
+    const DhikrModel(
+      id: 'istighfar_1',
+      arabic: 'أَسْتَغْفِرُ اللَّهَ',
+      transliteration: 'Astaghfirullah',
+      meaning: 'أستغفر الله',
+      count: 100,
+      category: CategoryType.istighfar,
+    ),
+    const DhikrModel(
+      id: 'istighfar_2',
+      arabic: 'أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ',
+      transliteration: 'Astaghfirullahal Azeem',
+      meaning: 'أستغفر الله العظيم',
+      count: 100,
+      category: CategoryType.istighfar,
+    ),
+    const DhikrModel(
+      id: 'istighfar_3',
+      arabic: 'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ',
+      transliteration: 'Astaghfirullaha wa atubu ilayh',
+      meaning: 'أستغفر الله وأتوب إليه',
+      count: 70,
+      source: 'البخاري',
+      category: CategoryType.istighfar,
+    ),
+    const DhikrModel(
+      id: 'istighfar_4',
+      arabic: 'رَبِّ اغْفِرْ لِي',
+      transliteration: "Rabbighfir li",
+      meaning: 'رب اغفر لي',
+      count: 100,
+      category: CategoryType.istighfar,
+    ),
+    const DhikrModel(
+      id: 'istighfar_5',
+      arabic: 'اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ، دِقَّهُ وَجِلَّهُ، وَأَوَّلَهُ وَآخِرَهُ، وَعَلَانِيَتَهُ وَسِرَّهُ',
+      transliteration: 'Allahumma ighfir li dhanbi kullahu...',
+      meaning: 'اللهم اغفر لي ذنبي كله',
+      count: 1,
+      source: 'مسلم',
+      category: CategoryType.istighfar,
+    ),
+    const DhikrModel(
+      id: 'istighfar_6',
+      arabic: 'سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا أَنْتَ، أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ',
+      transliteration: 'Subhanakal Lahumma wa bihamdik...',
+      meaning: 'سبحانك اللهم وبحمدك',
+      count: 1,
+      source: 'الترمذي',
+      category: CategoryType.istighfar,
+    ),
+    const DhikrModel(
+      id: 'istighfar_7',
+      arabic: 'اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ',
+      transliteration: 'Allahumma anta rabbi la ilaha illa anta...',
+      meaning: 'سيد الاستغفار',
+      count: 1,
+      source: 'البخاري',
+      category: CategoryType.istighfar,
+    ),
+  ];
+
+  // ============ التسبيح ============
+  static final List<DhikrModel> _tasbeehAdhkar = [
+    const DhikrModel(
+      id: 'tasbeeh_1',
+      arabic: 'سُبْحَانَ اللَّهِ',
+      transliteration: 'Subhanallah',
+      meaning: 'سبحان الله',
+      count: 33,
+      source: 'مسلم',
+      category: CategoryType.tasbeeh,
+    ),
+    const DhikrModel(
+      id: 'tasbeeh_2',
+      arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
+      transliteration: 'Subhanallahi wa bihamdih',
+      meaning: 'سبحان الله وبحمده',
+      count: 100,
+      source: 'مسلم',
+      category: CategoryType.tasbeeh,
+    ),
+    const DhikrModel(
+      id: 'tasbeeh_3',
+      arabic: 'سُبْحَانَ اللَّهِ الْعَظِيمِ',
+      transliteration: 'Subhanallahil Azeem',
+      meaning: 'سبحان الله العظيم',
+      count: 100,
+      source: 'البخاري',
+      category: CategoryType.tasbeeh,
+    ),
+    const DhikrModel(
+      id: 'tasbeeh_4',
+      arabic: 'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ',
+      transliteration: 'Subhanallah wal hamdulillah wa la ilaha illallah wallahu akbar',
+      meaning: 'الباقيات الصالحات',
+      count: 100,
+      source: 'مسلم',
+      category: CategoryType.tasbeeh,
+    ),
+    const DhikrModel(
+      id: 'tasbeeh_5',
+      arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ',
+      transliteration: 'Subhanallahi wa bihamdih subhanallahil azeem',
+      meaning: 'كلمتان خفيفتان على اللسان',
+      count: 100,
+      source: 'البخاري',
+      category: CategoryType.tasbeeh,
+    ),
+    const DhikrModel(
+      id: 'tasbeeh_6',
+      arabic: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
+      transliteration: 'La hawla wa la quwwata illa billah',
+      meaning: 'لا حول ولا قوة إلا بالله',
+      count: 100,
+      source: 'البخاري',
+      category: CategoryType.tasbeeh,
+    ),
+    const DhikrModel(
+      id: 'tasbeeh_7',
+      arabic: 'سُبْحَانَ رَبِّيَ الْعَظِيمِ',
+      transliteration: 'Subhana rabbiyal Azeem',
+      meaning: 'سبحان ربي العظيم',
+      count: 3,
+      category: CategoryType.tasbeeh,
+    ),
+  ];
+
+  // ============ الصلاة على النبي ============
+  static final List<DhikrModel> _salawatAdhkar = [
+    const DhikrModel(
+      id: 'salawat_1',
+      arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ',
+      transliteration: 'Allahumma salli ala Muhammad',
+      meaning: 'اللهم صل على محمد',
+      count: 100,
+      category: CategoryType.salawat,
+    ),
+    const DhikrModel(
+      id: 'salawat_2',
+      arabic: 'اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ',
+      transliteration: 'Allahumma salli wa sallim ala nabiyyina Muhammad',
+      meaning: 'اللهم صل وسلم على نبينا محمد',
+      count: 100,
+      category: CategoryType.salawat,
+    ),
+    const DhikrModel(
+      id: 'salawat_3',
+      arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ',
+      transliteration: 'Allahumma salli ala Muhammadin wa ala ali Muhammad...',
+      meaning: 'الصلاة الإبراهيمية',
+      count: 10,
+      source: 'البخاري',
+      category: CategoryType.salawat,
+    ),
+    const DhikrModel(
+      id: 'salawat_4',
+      arabic: 'صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ',
+      transliteration: 'Sallallahu alayhi wa sallam',
+      meaning: 'صلى الله عليه وسلم',
+      count: 100,
+      category: CategoryType.salawat,
+    ),
+    const DhikrModel(
+      id: 'salawat_5',
+      arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَأَزْوَاجِهِ وَذُرِّيَّتِهِ كَمَا صَلَّيْتَ عَلَى آلِ إِبْرَاهِيمَ',
+      transliteration: 'Allahumma salli ala Muhammadin wa azwajihi wa dhurriyyatih...',
+      meaning: 'الصلاة على النبي وآله',
+      count: 10,
+      source: 'البخاري',
+      category: CategoryType.salawat,
+    ),
+    const DhikrModel(
+      id: 'salawat_6',
+      arabic: 'جَزَى اللَّهُ مُحَمَّدًا صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ عَنَّا مَا هُوَ أَهْلُهُ',
+      transliteration: 'Jazallahu Muhammadan sallallahu alayhi wa sallam anna ma huwa ahluh',
+      meaning: 'جزى الله محمداً عنا ما هو أهله',
+      count: 1,
+      category: CategoryType.salawat,
+    ),
+    const DhikrModel(
+      id: 'salawat_7',
+      arabic: 'اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ وَالصَّلَاةِ الْقَائِمَةِ آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ',
+      transliteration: 'Allahumma rabba hadhihid dawatit tammah...',
+      meaning: 'دعاء الأذان',
+      count: 1,
+      source: 'البخاري',
+      category: CategoryType.salawat,
+    ),
+  ];
+
+  // ============ أذكار متنوعة ============
+  static final List<DhikrModel> _miscAdhkar = [
+    const DhikrModel(
+      id: 'misc_1',
+      arabic: 'لَا إِلَهَ إِلَّا اللَّهُ',
+      transliteration: 'La ilaha illallah',
+      meaning: 'لا إله إلا الله',
+      count: 100,
+      category: CategoryType.misc,
+    ),
+    const DhikrModel(
+      id: 'misc_2',
+      arabic: 'اللَّهُ أَكْبَرُ',
+      transliteration: 'Allahu Akbar',
+      meaning: 'الله أكبر',
+      count: 100,
+      category: CategoryType.misc,
+    ),
+    const DhikrModel(
+      id: 'misc_3',
+      arabic: 'الْحَمْدُ لِلَّهِ',
+      transliteration: 'Alhamdulillah',
+      meaning: 'الحمد لله',
+      count: 100,
+      category: CategoryType.misc,
+    ),
+    const DhikrModel(
+      id: 'misc_4',
+      arabic: 'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
+      transliteration: 'Bismillahir Rahmanir Raheem',
+      meaning: 'بسم الله الرحمن الرحيم',
+      count: 1,
+      category: CategoryType.misc,
+    ),
+    const DhikrModel(
+      id: 'misc_5',
+      arabic: 'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ',
+      transliteration: 'Hasbunallahu wa nimal wakeel',
+      meaning: 'حسبنا الله ونعم الوكيل',
+      count: 40,
+      category: CategoryType.misc,
+    ),
+  ];
 }

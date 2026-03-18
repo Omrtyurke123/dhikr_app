@@ -25,7 +25,8 @@ if (flutterVersionName == null) {
 android {
     namespace "com.example.dhikr_app"
     compileSdk 36
-//    ndkVersion "27.0.12077973"
+
+    // لا تضع ndkVersion هنا — يسبب مشاكل تحميل على C
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -34,10 +35,6 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
-    }
-
-    sourceSets {
-        main.java.srcDirs += "src/main/kotlin"
     }
 
     defaultConfig {

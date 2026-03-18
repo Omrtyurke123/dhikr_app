@@ -1,48 +1,46 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // Colors from the reference image
-  static const Color darkBg = Color(0xFF1A1F1A);
-  static const Color cardBg = Color(0xFF252B25);
+  static const Color bgColor = Color(0xFF1A1F1A);
   static const Color accentGreen = Color(0xFF6B8F3E);
-  static const Color lightGreen = Color(0xFF8BB547);
-  static const Color textPrimary = Color(0xFFE8E8E8);
-  static const Color textSecondary = Color(0xFF9BA89B);
-  static const Color morningGradStart = Color(0xFF87CEEB);
-  static const Color morningGradEnd = Color(0xFFFFB347);
-  static const Color eveningGradStart = Color(0xFF1A237E);
-  static const Color eveningGradEnd = Color(0xFF4A148C);
-  static const Color nightGradStart = Color(0xFF0D47A1);
-  static const Color nightGradEnd = Color(0xFF1B1B2F);
+  static const Color cardColor = Color(0xFF252B25);
+  static const Color textPrimary = Color(0xFFE8F0E8);
+  static const Color textSecondary = Color(0xFF9BAE9B);
 
-  static ThemeData get darkTheme {
-    return ThemeData(
-      brightness: Brightness.dark,
-      scaffoldBackgroundColor: darkBg,
-      primaryColor: accentGreen,
-      fontFamily: 'Scheherazade',
-      colorScheme: const ColorScheme.dark(
-        primary: accentGreen,
-        secondary: lightGreen,
-        surface: cardBg,
-      ),
-      appBarTheme: const AppBarTheme(
-        backgroundColor: darkBg,
-        elevation: 0,
-        centerTitle: true,
-        titleTextStyle: TextStyle(
-          color: textPrimary,
-          fontSize: 20,
-          fontFamily: 'Scheherazade',
-          fontWeight: FontWeight.bold,
+  static ThemeData get darkTheme => ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: bgColor,
+        primaryColor: accentGreen,
+        colorScheme: const ColorScheme.dark(
+          primary: accentGreen,
+          background: bgColor,
+          surface: cardColor,
         ),
-      ),
-      textTheme: const TextTheme(
-        headlineLarge: TextStyle(color: textPrimary, fontSize: 28, fontWeight: FontWeight.bold),
-        headlineMedium: TextStyle(color: textPrimary, fontSize: 22),
-        bodyLarge: TextStyle(color: textPrimary, fontSize: 16),
-        bodyMedium: TextStyle(color: textSecondary, fontSize: 14),
-      ),
-    );
-  }
+        appBarTheme: const AppBarTheme(
+          backgroundColor: bgColor,
+          elevation: 0,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontFamily: 'Amiri',
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: textPrimary,
+          ),
+        ),
+        cardTheme: const CardTheme(
+          color: cardColor,
+          elevation: 2,
+          margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        ),
+        tabBarTheme: const TabBarTheme(
+          labelColor: accentGreen,
+          unselectedLabelColor: textSecondary,
+          indicatorColor: accentGreen,
+        ),
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(color: textPrimary, fontFamily: 'Amiri'),
+          bodyMedium: TextStyle(color: textSecondary, fontFamily: 'Amiri'),
+        ),
+        useMaterial3: false,
+      );
 }
